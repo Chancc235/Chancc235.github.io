@@ -1,6 +1,6 @@
 ---
 permalink: /
-title: 
+title: Hohei Chan (陈浩熙)
 author_profile: true
 redirect_from: 
   - /about/
