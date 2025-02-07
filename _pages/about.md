@@ -18,7 +18,7 @@ I am a dedicated undergraduate student at the [School of Software Engineering](h
 
 Education
 ======
-* B.S. in School of Software Engineering, South China University of Technology, 2026 (expected)
+* B.S. in School of Software Engineering, South China University of Technology, 2026(expected)
 
 Interest
 ======
