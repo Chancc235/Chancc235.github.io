@@ -7,8 +7,7 @@ redirect_from:
   - /about.html
 ---
 
-Hohei Chan (陈浩熙)
-======
+
 Undergraduate student\
 Major in Software Engineering\
 South China University of Technology (SCUT)
