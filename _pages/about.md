@@ -20,7 +20,7 @@ Education
 ======
 * B.S. in School of Software Engineering, South China University of Technology, 2026(expected)
 
-Interest
+Interests
 ======
 * Reinforcement Learning
 * Generative decision models
