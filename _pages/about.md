@@ -16,7 +16,14 @@ About Me
 ======
 I am a dedicated undergraduate student at the [School of Software Engineering](https://www2.scut.edu.cn/sse/), South China University of Technology (SCUT), pursuing a Bachelor’s degree in Software Engineering. My academic journey centers on cutting-edge advancements in Reinforcement Learning (RL) and generative decision models, where I explore developing intelligent agents to make decisions in complex and uncertain environments under the mentorship of Prof. [Mengchen Zhao](https://batmanzzmc.github.io/).
 
+Education
+======
+* B.S. in School of Software Engineering, South China University of Technology, 2026 (expected)
 
+Interest
+======
+* Reinforcement Learning
+* Generative decision models
 
 <!-- Getting started
 ======
