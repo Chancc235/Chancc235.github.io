@@ -1,36 +1,52 @@
 ---
-layout: archive
+layout: home
 title: "Publications"
 permalink: /publications/
-author_profile: true
+author_profile: false
 ---
-
-{% if site.author.googlescholar %}
-  <div class="wordwrap">You can also find my articles on <a href="{{site.author.googlescholar}}">my Google Scholar profile</a>.</div>
-{% endif %}
 
 {% include base_path %}
 
-<!-- New style rendering if publication categories are defined -->
-{% if site.publication_category %}
-  {% for category in site.publication_category  %}
-    {% assign title_shown = false %}
-    {% for post in site.publications reversed %}
-      {% if post.category != category[0] %}
-        {% continue %}
-      {% endif %}
-      {% unless title_shown %}
-        <h2>{{ category[1].title }}</h2><hr />
-        {% assign title_shown = true %}
-      {% endunless %}
-      {% include archive-single.html %}
-    {% endfor %}
-  {% endfor %}
+{% assign has_publications = false %}
+{% for post in site.publications %}
+  {% assign has_publications = true %}
+{% endfor %}
+{% assign publications_sorted = site.publications | sort: "year" | reverse %}
+{% assign publication_years = publications_sorted | map: "year" | uniq %}
+
+<div class="pub-hero">
+  <h1 class="pub-hero__title">Publications</h1>
+</div>
+
+{% if has_publications %}
+  <div class="pub-section">
+    <section class="pub-group">
+      {% for year in publication_years %}
+        {% assign year_posts = publications_sorted | where: "year", year %}
+        {% if year_posts.size > 0 %}
+          <div class="pub-year-group">
+            <p class="pub-year-label">{{ year }}</p>
+            <div class="pub-list">
+              {% for post in year_posts %}
+                <article class="pub-item">
+                  {% include archive-single.html %}
+                </article>
+              {% endfor %}
+            </div>
+          </div>
+        {% endif %}
+      {% endfor %}
+    </section>
+  </div>
 {% else %}
-  {% for post in site.publications reversed %}
-    {% include archive-single.html %}
-  {% endfor %}
+  <div class="pub-empty">
+    <h2 class="pub-empty__title">Selected publications will appear here.</h2>
+    <p class="pub-empty__text">
+      There are no public entries on this page yet.
+      For the most up-to-date list, please check my Google Scholar profile.
+    </p>
+    {% if site.author.googlescholar %}
+      <a class="btn btn--primary" href="{{ site.author.googlescholar }}">Open Google Scholar</a>
+    {% endif %}
+  </div>
 {% endif %}
-
-
-

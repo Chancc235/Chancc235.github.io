@@ -7,58 +7,39 @@ redirect_from:
   - /resume
 ---
 
-{% include base_path %}
+Profile
+======
+Hohei Chan is an M.S. student in the School of Software Engineering at South China University of Technology and an intern with the Kling Team at Kuaishou Technology. His current research interests are reinforcement learning, agent systems, and multimodal generation. He was responsible for optimizing the reward model and the prompt enhancement module of the video generation model for the Kling team.
+
+Names
+======
+* Hohei Chan (preferred)
+* Haoxi Chen
 
 Education
 ======
-* Ph.D in Version Control Theory, GitHub University, 2018 (expected)
-* M.S. in Jekyll, GitHub University, 2014
-* B.S. in GitHub, GitHub University, 2012
+* M.S. student, School of Software Engineering, South China University of Technology, 2026 - Present
+* Undergrad student, School of Software Engineering, South China University of Technology, 2022 - 2026
 
-Work experience
+Experience
 ======
-* Spring 2024: Academic Pages Collaborator
-  * Github University
-  * Duties includes: Updates and improvements to template
-  * Supervisor: The Users
+* Intern, Kling Team, Kuaishou Technology, 2025 - Present
 
-* Fall 2015: Research Assistant
-  * Github University
-  * Duties included: Merging pull requests
-  * Supervisor: Professor Hub
+Research Interests
+======
+* Reinforcement Learning
+* Agent systems
+* Multimodal generation
 
-* Summer 2015: Research Assistant
-  * Github University
-  * Duties included: Tagging issues
-  * Supervisor: Professor Git
-  
-Skills
+Advisor
 ======
-* Skill 1
-* Skill 2
-  * Sub-skill 2.1
-  * Sub-skill 2.2
-  * Sub-skill 2.3
-* Skill 3
+* Prof. [Mengchen Zhao](https://batmanzzmc.github.io/), 2024 - Present
 
-Publications
+Emails
 ======
-  <ul>{% for post in site.publications reversed %}
-    {% include archive-single-cv.html %}
-  {% endfor %}</ul>
-  
-Talks
+* [hoheichanchx@gmail.com](mailto:hoheichanchx@gmail.com) (preferred)
+* [chenhaoxi@kuaishou.com](mailto:chenhaoxi@kuaishou.com)
+
+Links
 ======
-  <ul>{% for post in site.talks reversed %}
-    {% include archive-single-talk-cv.html  %}
-  {% endfor %}</ul>
-  
-Teaching
-======
-  <ul>{% for post in site.teaching reversed %}
-    {% include archive-single-cv.html %}
-  {% endfor %}</ul>
-  
-Service and leadership
-======
-* Currently signed in to 43 different slack teams
+* Homepage: [Personal website](https://chancc235.github.io)

@@ -4,6 +4,20 @@ layout: default
 
 {% include base_path %}
 
+{% if page.year %}
+  {% assign publication_year = page.year %}
+{% elsif page.date %}
+  {% assign publication_year = page.date | date: "%Y" %}
+{% endif %}
+
+{% if page.paperurl %}
+  {% if page.paperurl contains "://" %}
+    {% assign paper_href = page.paperurl %}
+  {% else %}
+    {% assign paper_href = page.paperurl | prepend: base_path %}
+  {% endif %}
+{% endif %}
+
 {% if page.header.overlay_color or page.header.overlay_image or page.header.image %}
   {% include page__hero.html %}
 {% endif %}
@@ -20,7 +34,7 @@ layout: default
   <article class="page" itemscope itemtype="http://schema.org/CreativeWork">
     {% if page.title %}<meta itemprop="headline" content="{{ page.title | markdownify | strip_html | strip_newlines | escape_once }}">{% endif %}
     {% if page.excerpt %}<meta itemprop="description" content="{{ page.excerpt | markdownify | strip_html | strip_newlines | escape_once }}">{% endif %}
-    {% if page.date %}<meta itemprop="datePublished" content="{{ page.date | date: "%B %d, %Y" }}">{% endif %}
+    {% if page.date and page.suppress_date_meta != true %}<meta itemprop="datePublished" content="{{ page.date | date: "%B %d, %Y" }}">{% endif %}
     {% if page.modified %}<meta itemprop="dateModified" content="{{ page.modified | date: "%B %d, %Y" }}">{% endif %}
 
     <div class="page__inner-wrap">
@@ -35,9 +49,9 @@ layout: default
         {% endif %}
         
         {% if page.collection == 'teaching' %}
-          <p> {{ page.type }}, <i>{{ page.venue }}</i>, {{ page.date | default: "1900-01-01" | date: "%Y" }} </p>
-        {% elsif page.venue and page.date %}
-          <p>Published in <i>{{ page.venue }}</i>, {{ page.date | default: "1900-01-01" | date: "%Y" }} </p>
+          <p>{{ page.type }}, <i>{{ page.venue }}</i>{% if publication_year %}, {{ publication_year }}{% endif %}</p>
+        {% elsif page.venue and publication_year %}
+          <p>Published in <i>{{ page.venue }}</i>, {{ publication_year }}</p>
         {% elsif page.date %}
           <p class="page__date"><strong><i class="fa fa-fw fa-calendar" aria-hidden="true"></i> {{ site.data.ui-text[site.locale].date_label | default: "Published:" }}</strong> <time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | default: "1900-01-01" | date: "%B %d, %Y" }}</time></p>
         {% endif %}    
@@ -47,10 +61,28 @@ layout: default
       <section class="page__content" itemprop="text">
         {{ content }}
 
-        {% if page.citation and page.paperurl and page.slidesurl %}
-          <p style="font-size: smaller">Recommended citation: {{ page.citation }}<br /><a href="{{ page.paperurl }}">Download Paper</a> | <a href="{{ page.slidesurl }}">Download Slides</a></p>
+        {% if page.collection == 'publications' %}
+          {% if page.bibtex or page.paperurl %}
+            <div class="pub-actions pub-actions--detail">
+              {% if page.bibtex %}
+                <a class="btn btn--light-outline btn--small" href="#citation-bib">Bib</a>
+              {% endif %}
+              {% if page.paperurl %}
+                <a class="btn btn--light-outline btn--small" href="{{ paper_href }}" target="_blank" rel="noopener">PDF</a>
+              {% endif %}
+            </div>
+          {% endif %}
+        {% endif %}
+
+        {% if page.collection == 'publications' and page.bibtex %}
+          <div id="citation-bib" class="pub-bib">
+            <p class="pub-bib__label">BibTeX</p>
+            <pre class="pub-bib__code">{{ page.bibtex | escape }}</pre>
+          </div>
+        {% elsif page.citation and page.paperurl and page.slidesurl %}
+          <p style="font-size: smaller">Recommended citation: {{ page.citation }}<br /><a href="{{ paper_href }}">Download Paper</a> | <a href="{{ page.slidesurl }}">Download Slides</a></p>
         {% elsif page.citation and page.paperurl %}
-          <p style="font-size: smaller">Recommended citation: {{ page.citation }}<br /><a href="{{ page.paperurl }}">Download Paper</a></p>
+          <p style="font-size: smaller">Recommended citation: {{ page.citation }}<br /><a href="{{ paper_href }}">Download Paper</a></p>
         {% elsif page.citation and page.slidesurl %}
           <p style="font-size: smaller">Recommended citation: {{ page.citation }}<br /><a href="{{ page.slidesurl }}">Download Slides</a></p>
         {% elsif page.citation %}
@@ -62,12 +94,14 @@ layout: default
         {% if page.link %}<div><a href="{{ page.link }}" class="btn">{{ site.data.ui-text[site.locale].ext_link_label | default: "Direct Link" }}</a></div>{% endif %}
       </section>
 
-      <footer class="page__meta">
-        {% if site.data.ui-text[site.locale].meta_label %}
-          <h4 class="page__meta-title">{{ site.data.ui-text[site.locale].meta_label }}</h4>
-        {% endif %}
-        {% include page__taxonomy.html %}
-      </footer>
+      {% unless page.collection == 'publications' %}
+        <footer class="page__meta">
+          {% if site.data.ui-text[site.locale].meta_label %}
+            <h4 class="page__meta-title">{{ site.data.ui-text[site.locale].meta_label }}</h4>
+          {% endif %}
+          {% include page__taxonomy.html %}
+        </footer>
+      {% endunless %}
 
       {% if page.share %}{% include social-share.html %}{% endif %}
 
