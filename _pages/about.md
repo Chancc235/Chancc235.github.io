@@ -18,7 +18,7 @@ redirect_from:
       <p class="home-hero__lead">
         I am an MS student at the
         <a href="https://www2.scut.edu.cn/sse/">School of Software Engineering, South China University of Technology</a>
-        and an intern with the Kling Team at
+        and an intern with the <a href="https://kling.ai/">Kling Team</a> at
         <a href="https://www.kuaishou.com/">Kuaishou Technology</a>.
         Before that, I completed my undergraduate study in the same school.
         My current research focuses on reinforcement learning, agent systems, and multimodal generation
@@ -60,7 +60,7 @@ redirect_from:
 </div>
 
 <div class="home-grid">
-  <section class="home-card">
+  <section class="home-card home-card--wide">
     <h2>Timeline</h2>
     <div class="home-timeline">
       <div class="home-timeline__item">
@@ -69,7 +69,7 @@ redirect_from:
         <p class="home-timeline__time">2026 - Present</p>
       </div>
       <div class="home-timeline__item">
-        <p class="home-timeline__role">Intern</p>
+        <p class="home-timeline__role">Research Intern</p>
         <p class="home-timeline__org">Kling Team, Kuaishou Technology</p>
         <p class="home-timeline__time">2025.9 - Present</p>
       </div>
@@ -77,6 +77,16 @@ redirect_from:
         <p class="home-timeline__role">Undergrad student</p>
         <p class="home-timeline__org">School of Software Engineering, South China University of Technology</p>
         <p class="home-timeline__time">2022.9 - 2026.6</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="home-card">
+    <h2>Awards</h2>
+    <div class="home-timeline">
+      <div class="home-timeline__item">
+        <p class="home-timeline__role">National Scholarship</p>
+        <p class="home-timeline__time">2025</p>
       </div>
     </div>
   </section>
