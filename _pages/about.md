@@ -59,8 +59,8 @@ redirect_from:
       <article class="work-item">
         <div class="work-item__year">2026</div>
         <div class="work-item__body">
-          <h3>PADiff: Predictive and Adaptive Diffusion Policies for Ad Hoc Teamwork</h3>
-          <p class="work-item__meta"><strong>Hohei Chan</strong>, Xinzhi Zhang, Antao Xiang, Weinan Zhang, and Mengchen Zhao · AAAI</p>
+          <h3>PADiff: Predictive and Adaptive Diffusion Policies for Ad Hoc Teamwork <span class="home-venue-badge">AAAI 2026</span></h3>
+          <p class="work-item__meta"><strong>Hohei Chan</strong>, Xinzhi Zhang, Antao Xiang, Weinan Zhang, and Mengchen Zhao</p>
           <div class="home-pub-actions">
             <a class="home-pub-link home-pub-link--pdf" href="{{ base_path }}/files/aaai2026-padiff.pdf" target="_blank" rel="noopener">PDF</a>
             <input class="home-tldr-input" id="home-tldr-padiff" type="checkbox">
@@ -75,8 +75,8 @@ redirect_from:
       <article class="work-item">
         <div class="work-item__year">2025</div>
         <div class="work-item__body">
-          <h3>Ad Hoc Teamwork via Offline Goal-Based Decision Transformers</h3>
-          <p class="work-item__meta">Xinzhi Zhang, <strong>Hohei Chan</strong>, Deheng Ye, Yi Cai, and Mengchen Zhao · ICML</p>
+          <h3>Ad Hoc Teamwork via Offline Goal-Based Decision Transformers <span class="home-venue-badge">ICML 2025</span></h3>
+          <p class="work-item__meta">Xinzhi Zhang, <strong>Hohei Chan</strong>, Deheng Ye, Yi Cai, and Mengchen Zhao</p>
           <div class="home-pub-actions">
             <a class="home-pub-link home-pub-link--pdf" href="{{ base_path }}/files/icml2025-taget.pdf" target="_blank" rel="noopener">PDF</a>
             <input class="home-tldr-input" id="home-tldr-taget" type="checkbox">
