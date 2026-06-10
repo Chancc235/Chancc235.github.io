@@ -62,30 +62,42 @@ layout: default
         {{ content }}
 
         {% if page.collection == 'publications' %}
-          {% if page.bibtex or page.paperurl %}
-            <div class="pub-actions pub-actions--detail">
+          {% assign pub_id = page.url | slugify %}
+          <div class="pub-actions pub-actions--detail">
+            {% if page.paperurl %}
+              <a class="pub-link pub-link--pdf" href="{{ paper_href }}" target="_blank" rel="noopener">PDF</a>
+            {% endif %}
+            <input class="pub-toggle-input" id="bib-{{ pub_id }}" type="checkbox">
+            <label class="pub-link" for="bib-{{ pub_id }}">Bib</label>
+            <input class="pub-toggle-input" id="abstract-{{ pub_id }}" type="checkbox">
+            <label class="pub-link" for="abstract-{{ pub_id }}">Abstract</label>
+            <div class="pub-expansion pub-expansion--bib">
               {% if page.bibtex %}
-                <a class="btn btn--light-outline btn--small" href="#citation-bib">Bib</a>
-              {% endif %}
-              {% if page.paperurl %}
-                <a class="btn btn--light-outline btn--small" href="{{ paper_href }}" target="_blank" rel="noopener">PDF</a>
+                <pre class="pub-bib__code">{{ page.bibtex | escape }}</pre>
+              {% elsif page.citation %}
+                <p>{{ page.citation }}</p>
+              {% else %}
+                <p>BibTeX will be added soon.</p>
               {% endif %}
             </div>
-          {% endif %}
+            <div class="pub-expansion pub-expansion--abstract">
+              {% assign abstract_text = page.paper_abstract | default: page.excerpt %}
+              {% if abstract_text %}
+                {{ abstract_text | markdownify }}
+              {% else %}
+                <p>Abstract will be added soon.</p>
+              {% endif %}
+            </div>
+          </div>
         {% endif %}
 
-        {% if page.collection == 'publications' and page.bibtex %}
-          <div id="citation-bib" class="pub-bib">
-            <p class="pub-bib__label">BibTeX</p>
-            <pre class="pub-bib__code">{{ page.bibtex | escape }}</pre>
-          </div>
-        {% elsif page.citation and page.paperurl and page.slidesurl %}
+        {% if page.collection != 'publications' and page.citation and page.paperurl and page.slidesurl %}
           <p style="font-size: smaller">Recommended citation: {{ page.citation }}<br /><a href="{{ paper_href }}">Download Paper</a> | <a href="{{ page.slidesurl }}">Download Slides</a></p>
-        {% elsif page.citation and page.paperurl %}
+        {% elsif page.collection != 'publications' and page.citation and page.paperurl %}
           <p style="font-size: smaller">Recommended citation: {{ page.citation }}<br /><a href="{{ paper_href }}">Download Paper</a></p>
-        {% elsif page.citation and page.slidesurl %}
+        {% elsif page.collection != 'publications' and page.citation and page.slidesurl %}
           <p style="font-size: smaller">Recommended citation: {{ page.citation }}<br /><a href="{{ page.slidesurl }}">Download Slides</a></p>
-        {% elsif page.citation %}
+        {% elsif page.collection != 'publications' and page.citation %}
           <p style="font-size: smaller">Recommended citation: {{ page.citation }}</p>
         {% elsif page.slidesurl %}
           <p style="font-size: smaller"><a href="{{ page.slidesurl }}">Download Slides</a></p>

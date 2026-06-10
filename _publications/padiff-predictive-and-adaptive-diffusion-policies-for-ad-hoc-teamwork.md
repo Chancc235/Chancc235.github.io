@@ -10,6 +10,8 @@ venue: "Proceedings of the AAAI Conference on Artificial Intelligence"
 paperurl: "/files/aaai2026-padiff.pdf"
 citation: 'Chan, H., Zhang, X., Xiang, A., Zhang, W., &amp; Zhao, M. (2026). &quot;PADiff: Predictive and Adaptive Diffusion Policies for Ad Hoc Teamwork.&quot; <i>Proceedings of the AAAI Conference on Artificial Intelligence</i>, 40(24), 19943-19951.'
 excerpt: "In offline multi-agent collaboration scenarios, we propose a diffusion-based decision framework that enables the modeling of various collaboration modes for unknown teammate agents."
+paper_abstract: >
+  Ad hoc teamwork (AHT) requires agents to collaborate with previously unseen teammates, which is crucial for many real-world applications. The core challenge of AHT is to develop an ego agent that can predict and adapt to unknown teammates on the fly. Conventional RL-based approaches optimize a single expected return, which often causes policies to collapse into a single dominant behavior, thus failing to capture the multimodal cooperation patterns inherent in AHT. In this work, we introduce PADiff, a diffusion-based approach that captures agent's multimodal behaviors, unlocking its diverse cooperation modes with teammates. However, standard diffusion models lack the ability to predict and adapt in highly non-stationary AHT scenarios. To address this limitation, we propose a novel diffusion-based policy that integrates critical predictive information about teammates into the denoising process. Extensive experiments across three cooperation environments demonstrate that PADiff outperforms existing AHT methods significantly.
 bibtex: |
   @inproceedings{chan2026padiff,
     title={PADiff: Predictive and Adaptive Diffusion Policies for Ad Hoc Teamwork},

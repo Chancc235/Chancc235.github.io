@@ -41,7 +41,9 @@
     {% endif %}
 
     <h2 class="archive__item-title" itemprop="headline">
-      {% if post.link %}
+      {% if post.collection == 'publications' %}
+        <span>{{ title }}</span>
+      {% elsif post.link %}
         <a href="{{ post.link }}">{{ title }}</a> <a href="{{ base_path }}{{ post.url }}" rel="permalink"><i class="fa fa-link" aria-hidden="true" title="permalink"></i><span class="sr-only">Permalink</span></a>
       {% else %}
         <a href="{{ base_path }}{{ post.url }}" rel="permalink">{{ title }}</a>
@@ -56,7 +58,7 @@
           <p>{{ post.type }}, <i>{{ post.venue }}</i>{% if publication_year %}, {{ publication_year }}{% endif %}</p>
         {% elsif post.collection == 'publications' %}
           {% if post.authors %}
-            <p class="pub-meta pub-meta--authors">{{ post.authors }}</p>
+            <p class="pub-meta pub-meta--authors">{{ post.authors | replace: "Hohei Chan", "<strong>Hohei Chan</strong>" }}</p>
           {% endif %}
           <p class="pub-meta pub-meta--venue">
             {% if post.venue_short %}
@@ -75,16 +77,33 @@
     {% endif %}
     
     {% if post.collection == 'publications' %}
-      {% if post.bibtex or post.paperurl %}
-        <div class="pub-actions">
+      {% assign pub_id = post.url | slugify %}
+      <div class="pub-actions">
+        {% if post.paperurl %}
+          <a class="pub-link pub-link--pdf" href="{{ paper_href }}" target="_blank" rel="noopener">PDF</a>
+        {% endif %}
+        <input class="pub-toggle-input" id="bib-{{ pub_id }}" type="checkbox">
+        <label class="pub-link" for="bib-{{ pub_id }}">Bib</label>
+        <input class="pub-toggle-input" id="abstract-{{ pub_id }}" type="checkbox">
+        <label class="pub-link" for="abstract-{{ pub_id }}">Abstract</label>
+        <div class="pub-expansion pub-expansion--bib">
           {% if post.bibtex %}
-            <a class="btn btn--light-outline btn--small" href="{{ base_path }}{{ post.url }}#citation-bib" target="_blank" rel="noopener">Bib</a>
-          {% endif %}
-          {% if post.paperurl %}
-            <a class="btn btn--light-outline btn--small" href="{{ paper_href }}" target="_blank" rel="noopener">PDF</a>
+            <pre class="pub-bib__code">{{ post.bibtex | escape }}</pre>
+          {% elsif post.citation %}
+            <p>{{ post.citation }}</p>
+          {% else %}
+            <p>BibTeX will be added soon.</p>
           {% endif %}
         </div>
-      {% endif %}
+        <div class="pub-expansion pub-expansion--abstract">
+          {% assign abstract_text = post.paper_abstract | default: post.excerpt %}
+          {% if abstract_text %}
+            {{ abstract_text | markdownify }}
+          {% else %}
+            <p>Abstract will be added soon.</p>
+          {% endif %}
+        </div>
+      </div>
     {% elsif post.citation and post.paperurl and post.slidesurl %}
       <p>Recommended citation: {{ post.citation }}<br /><a href="{{ paper_href }}">Download Paper</a> | <a href="{{ post.slidesurl }}">Download Slides</a></p>
     {% elsif post.citation and post.paperurl %}
